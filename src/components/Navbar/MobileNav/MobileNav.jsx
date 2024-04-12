@@ -7,6 +7,15 @@ const MobileNav = ({ isOpen, toggleMenu }) => {
     document.getElementById(sectionId).scrollIntoView({ behavior: "smooth" });
   };
 
+  const downloadCV = () => {
+    const link = document.createElement("a");
+    link.href = "./Ahmad-Jaffal-CV.pdf";
+    link.setAttribute("download", "Ahmad-Jaffal-CV.pdf"); // Or any other extension
+    document.body.appendChild(link);
+    link.click();
+    link.parentNode.removeChild(link);
+  };
+
   return (
     <>
       <div
@@ -52,7 +61,9 @@ const MobileNav = ({ isOpen, toggleMenu }) => {
             </li>
 
             <li>
-              <button className="contact-btn">Download CV</button>
+              <button className="contact-btn" onClick={downloadCV}>
+                Download CV
+              </button>
             </li>
           </ul>
         </div>

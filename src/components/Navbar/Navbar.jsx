@@ -78,10 +78,7 @@ function NavBar() {
               </Link>
             </li>
 
-            <button
-              className="contact-btn"
-              onClick={downloadCV}
-            >
+            <button className="contact-btn" onClick={downloadCV}>
               Download CV
             </button>
           </ul>
