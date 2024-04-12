@@ -58,3 +58,6 @@
     right: -1rem;
   }
 }
+.slick-slide * {
+  user-select: text !important;
+}

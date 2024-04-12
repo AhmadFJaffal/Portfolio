@@ -123,6 +123,11 @@
   .nav-content ul {
     display: none;
   }
+  .menu-item {
+    background: transparent; /* Assuming you want no background */
+    border: none; /* Removes border */
+    white-space: nowrap; /* This will prevent the text from wrapping */
+  }
 }
 
 @media (max-width: 920px) {

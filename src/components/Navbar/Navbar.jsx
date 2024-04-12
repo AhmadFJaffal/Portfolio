@@ -10,6 +10,14 @@ function NavBar() {
     setOpenMenu(!openMenu);
   };
 
+  const downloadCV = () => {
+    const link = document.createElement("a");
+    link.href = "./Ahmad-Jaffal-CV.pdf";
+    link.setAttribute("download", "Ahmad-Jaffal-CV.pdf"); // Or any other extension
+    document.body.appendChild(link);
+    link.click();
+    link.parentNode.removeChild(link);
+  };
   return (
     <>
       <MobileNav isOpen={openMenu} toggleMenu={toggleMenu} />
@@ -70,7 +78,10 @@ function NavBar() {
               </Link>
             </li>
 
-            <button className="contact-btn" onClick={() => {}}>
+            <button
+              className="contact-btn"
+              onClick={downloadCV}
+            >
               Download CV
             </button>
           </ul>
