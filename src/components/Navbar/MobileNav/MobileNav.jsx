@@ -16,32 +16,44 @@ const MobileNav = ({ isOpen, toggleMenu }) => {
         <div className="mobile-menu-container">
           <ul>
             <li>
-              <a onClick={() => handleScroll("hero")} className="menu-item">
+              <button
+                onClick={() => handleScroll("hero")}
+                className="menu-item"
+              >
                 Home
-              </a>
+              </button>
             </li>
 
             <li>
-              <a onClick={() => handleScroll("skills")} className="menu-item">
+              <button
+                onClick={() => handleScroll("skills")}
+                className="menu-item"
+              >
                 Skills
-              </a>
+              </button>
             </li>
 
             <li>
-              <a onClick={() => handleScroll("work-exp")} className="menu-item">
+              <button
+                onClick={() => handleScroll("work-exp")}
+                className="menu-item"
+              >
                 Work Experience
-              </a>
+              </button>
             </li>
 
             <li>
-              <a onClick={() => handleScroll("contact")} className="menu-item">
+              <button
+                onClick={() => handleScroll("contact")}
+                className="menu-item"
+              >
                 Contact Me
-              </a>
+              </button>
             </li>
 
-            <button className="contact-btn" onClick={() => {}}>
-              Download CV
-            </button>
+            <li>
+              <button className="contact-btn">Download CV</button>
+            </li>
           </ul>
         </div>
       </div>
