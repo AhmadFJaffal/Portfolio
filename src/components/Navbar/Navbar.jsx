@@ -24,7 +24,7 @@ function NavBar() {
 
       <nav className="nav-wrapper">
         <div className="nav-content">
-          Eng. Ahmad Jaffal
+          Ahmad Jaffal
           <ul>
             <li>
               <Link

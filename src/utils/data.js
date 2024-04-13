@@ -58,8 +58,8 @@ export const WORK_EXPERIENCE = [
     title: "Freelance Project (connexionlb.com)",
     date: "Jan 2024 - March 2024",
     responsibilities: [
-      "Collaborated with a group of engineers to develop a live web application with 50+ users in collaboration with Connexion for transportation & tourism to facilitate all of the company's services and operations.",
-      "Utilized GCP and Firebase services for backend and database management.",
+      "Led an engineering team to develop a web application for Connexion's transportation and tourism services, engaging over 100 users. The project was managed using Scrum methodologies.",
+      "Utilized GCP and Firebase services for backend and database management, and integrated WHISH Money's API for payment processing and income management.",
       "Developed a responsive and smooth UI using React.js and Material-UI.",
       "Integrated Google maps APIs with firebase's realtime database for live tracking of buses and user interactions.",
       "Designed and deployed a fully-integrated admin console that facilitates comprehensive management of company services and operations.",
