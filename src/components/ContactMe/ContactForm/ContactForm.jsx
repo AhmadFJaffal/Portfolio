@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Toast } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./ContactForm.css";
 
 const ContactForm = () => {
@@ -9,6 +11,10 @@ const ContactForm = () => {
     message: "",
   });
 
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+  const [toastVariant, setToastVariant] = useState("success");
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -16,22 +22,34 @@ const ContactForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevents the default form submission behavior
     try {
-      const response = await fetch("https://yourserver.com/api/sendmail", {
+      const result = await fetch("/.netlify/functions/send-email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          from: formData.email,
+          senderName: `${formData.firstname} ${formData.lastname}`,
+          text: formData.message,
+        }),
       });
-      if (response.ok) {
-        alert("Email sent successfully!");
-        setFormData({ firstname: "", lastname: "", email: "", message: "" }); // Clear form
+
+      const data = await result.json();
+
+      if (result.ok) {
+        setToastMessage("Email sent successfully!");
+        setToastVariant("success");
       } else {
-        alert("Failed to send email.");
+        throw new Error(data.message || "Failed to send email");
       }
     } catch (error) {
       console.error("Error:", error);
+      setToastMessage(
+        error.message || "Failed to send email. Please Try again later."
+      );
+      setToastVariant("danger");
     }
+    setShowToast(true);
   };
 
   return (
@@ -69,6 +87,18 @@ const ContactForm = () => {
         />
         <button type="submit">SEND</button>
       </form>
+      <Toast
+        onClose={() => setShowToast(false)}
+        show={showToast}
+        delay={5000}
+        autohide
+        bg={toastVariant}
+      >
+        <Toast.Header>
+          <strong className="me-auto">Notification</strong>
+        </Toast.Header>
+        <Toast.Body>{toastMessage}</Toast.Body>
+      </Toast>
     </div>
   );
 };
