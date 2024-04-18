@@ -17,8 +17,8 @@ exports.handler = async function (event, context) {
 
     const message = {
       to: "ahmad-jaffal1@outlook.com",
-      from,
-      subject: `New message from ${senderName}`,
+      from: "ahmad-jaffal1@outlook.com",
+      subject: `New message from ${senderName} ${from}`,
       text,
     };
 
