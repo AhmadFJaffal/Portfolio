@@ -64,7 +64,7 @@
 
 @media (max-width: 768px) {
   .skills-content {
-    flex-direction: column-reverse;
+    flex-direction: column;
     gap: 3rem;
   }
 
