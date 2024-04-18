@@ -29,6 +29,7 @@ exports.handler = async function (event, context) {
       body: JSON.stringify({ message: "Email sent successfully!" }),
     };
   } catch (error) {
+    console.error(error);
     return {
       statusCode: 500,
       body: JSON.stringify({
