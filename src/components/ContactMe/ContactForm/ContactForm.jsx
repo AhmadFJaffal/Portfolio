@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { Toast } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
 import "./ContactForm.css";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -11,10 +13,6 @@ const ContactForm = () => {
     message: "",
   });
 
-  const [showToast, setShowToast] = useState(false);
-  const [toastMessage, setToastMessage] = useState("");
-  const [toastVariant, setToastVariant] = useState("success");
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -22,14 +20,14 @@ const ContactForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevents the default form submission behavior
     try {
-      const result = await fetch("/.netlify/functions/send-email", {
+      const result = await fetch("https://ahmadjaffal.netlify.app/.netlify/functions/sendEmail", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           from: formData.email,
-          senderName: `${formData.firstname} ${formData.lastname}`,
+          SenderName: `${formData.firstname} ${formData.lastname}`,
           text: formData.message,
         }),
       });
@@ -37,19 +35,24 @@ const ContactForm = () => {
       const data = await result.json();
 
       if (result.ok) {
-        setToastMessage("Email sent successfully!");
-        setToastVariant("success");
+        MySwal.fire({
+          title: "Success!",
+          text: "Email sent successfully!",
+          icon: "success",
+        });
       } else {
         throw new Error(data.message || "Failed to send email");
       }
     } catch (error) {
       console.error("Error:", error);
-      setToastMessage(
-        error.message || "Failed to send email. Please Try again later."
-      );
-      setToastVariant("danger");
+      MySwal.fire({
+        title: "Error!",
+        text:
+          error.message ||
+          "Failed to send email. Check the console for more information.",
+        icon: "error",
+      });
     }
-    setShowToast(true);
   };
 
   return (
@@ -87,18 +90,6 @@ const ContactForm = () => {
         />
         <button type="submit">SEND</button>
       </form>
-      <Toast
-        onClose={() => setShowToast(false)}
-        show={showToast}
-        delay={5000}
-        autohide
-        bg={toastVariant}
-      >
-        <Toast.Header>
-          <strong className="me-auto">Notification</strong>
-        </Toast.Header>
-        <Toast.Body>{toastMessage}</Toast.Body>
-      </Toast>
     </div>
   );
 };
