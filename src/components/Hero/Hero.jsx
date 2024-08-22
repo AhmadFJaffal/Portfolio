@@ -13,12 +13,14 @@ const Hero = () => {
 
       <div className="hero-img">
         <div>
-       
           <img src="./assets/images/img11.jpg" alt="" />
         </div>
 
         <div>
-        <div className="tech-icon">
+          <div className="tech-icon">
+            <img src="./assets/images/img-nextjs.png" alt="" />
+          </div>
+          <div className="tech-icon">
             <img src="./assets/images/img01.png" alt="" />
           </div>
           <div className="tech-icon">
